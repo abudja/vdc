@@ -10,7 +10,6 @@
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
-    ,
     "LABVMAdminUserName": {
       "type": "string",
       "defaultValue": "vdcadmin",

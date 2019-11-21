@@ -6,6 +6,9 @@
       "type": "string",
       "defaultValue": "labvmdnsnameupdateme",
       "minLength": 1
+    },
+    "LABVMAdminPassword": {
+      "type": "securestring" 
     }
   },
   "variables": {
@@ -14,7 +17,6 @@
     "LABVMVNETSubnet1Prefix": "192.168.0.0/24",
     "LABVMName": "LABVM",
     "LABVMAdminUserName": "vdcadmin",
-    "LABVMAdminPassword": "Password.1!!",
     "LABVMImagePublisher": "MicrosoftWindowsDesktop",
     "LABVMImageOffer": "Windows-10",
     "LABVMWindowsOSVersion": "RS3-Pro",
@@ -116,7 +118,7 @@
         "osProfile": {
           "computerName": "[variables('LABVMName')]",
           "adminUsername": "[variables('LABVMAdminUsername')]",
-          "adminPassword": "[variables('LABVMAdminPassword')]"
+          "adminPassword": "[parameters('LABVMAdminPassword')]"
         },
         "storageProfile": {
           "imageReference": {

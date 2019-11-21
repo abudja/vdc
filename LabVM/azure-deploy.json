@@ -5,10 +5,16 @@
     "LABVMDnsName": {
       "type": "string",
       "defaultValue": "labvmdnsnameupdateme",
-      "minLength": 1
+      "minLength": 1,
+      "metadata": {
+        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+      }
     },
     "LABVMAdminPassword": {
-      "type": "securestring" 
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
     }
   },
   "variables": {

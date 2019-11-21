@@ -10,6 +10,14 @@
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
+    ,
+    "LABVMAdminUserName": {
+      "type": "string",
+      "defaultValue": "vdcadmin",
+      "metadata": {
+        "description": "Local administrator username for the Virtual Machine."
+      }
+    }
     "LABVMAdminPassword": {
       "type": "securestring",
       "metadata": {
@@ -22,7 +30,6 @@
     "LABVMVNETSubnet1Name": "LABVM",
     "LABVMVNETSubnet1Prefix": "192.168.0.0/24",
     "LABVMName": "LABVM",
-    "LABVMAdminUserName": "vdcadmin",
     "LABVMImagePublisher": "MicrosoftWindowsDesktop",
     "LABVMImageOffer": "Windows-10",
     "LABVMWindowsOSVersion": "RS3-Pro",
@@ -123,7 +130,7 @@
         },
         "osProfile": {
           "computerName": "[variables('LABVMName')]",
-          "adminUsername": "[variables('LABVMAdminUsername')]",
+          "adminUsername": "[parameters('LABVMAdminUsername')]",
           "adminPassword": "[parameters('LABVMAdminPassword')]"
         },
         "storageProfile": {

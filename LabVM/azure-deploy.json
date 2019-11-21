@@ -22,6 +22,10 @@
       "metadata": {
         "description": "Password for the Virtual Machine."
       }
+    },
+    "vmExtensionName": {
+      "type": "string",
+      "defaultValue": "AntiMalware"
     }
   },
   "variables": {
@@ -175,6 +179,36 @@
               ],
               "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('LABVMInstallHyperVScriptFolder'), '/', variables('LABVMInstallHyperVScriptFileName'))]"
             }
+          }
+        },
+        {
+          "type": "extensions",
+          "name": "[concat(parameters('LABVMName'),'/', parameters('vmExtensionName'))]",
+          "apiVersion": "2017-12-01",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('LABVMName'))]"
+          ],
+          "properties": {
+            "publisher": "Microsoft.Azure.Security",
+            "type": "IaaSAntimalware",
+            "typeHandlerVersion": "1.1",
+            "settings": {
+              "AntimalwareEnabled": "true",
+              "Exclusions": {
+                "Paths": "C:\\Users",
+                "Extensions": ".txt",
+                "Processes": "taskmgr.exe"
+              },
+              "RealtimeProtectionEnabled": "true",
+              "ScheduledScanSettings": {
+                "isEnabled": "true",
+                "scanType": "Quick",
+                "day": "7",
+                "time": "120"
+              }
+            },
+            "protectedSettings": null
           }
         }
       ]
